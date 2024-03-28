@@ -1,25 +1,13 @@
 <template>
-  <article>
-    <p>{{ message }}</p>
-  </article>
+  <a-button type="primary">First button vie antdv</a-button>
 </template>
 
-<script setup lang="ts">
-const message: string = "Hello User!";
-</script>
+<script lang="ts">
+import { Button } from "ant-design-vue";
 
-<style scoped>
-article {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: lightgrey;
-}
-p {
-  font-size: 14px;
-  color: rebeccapurple;
-  font-family: sans-serif;
-}
-</style>
+export default {
+  components: {
+    "a-button": Button,
+  },
+};
+</script>
