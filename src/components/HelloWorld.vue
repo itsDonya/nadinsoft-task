@@ -1,5 +1,10 @@
 <template>
-  <a-button type="primary">First button vie antdv</a-button>
+  <article class="w-screen h-screen flex items-center justify-center">
+    <a-button type="primary" class="flex items-center justify-center gap-4"
+      >centered button using <span class="font-bold underline"> AntDV </span> &
+      <span class="font-bold underline"> TailwindCSS </span></a-button
+    >
+  </article>
 </template>
 
 <script lang="ts">
