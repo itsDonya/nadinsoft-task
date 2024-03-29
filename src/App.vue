@@ -2,7 +2,7 @@
   <div
     class="app-wrapper relative w-screen h-screen flex flex-col items-start justify-start gap-0 bg-black overflow-hidden">
     <img
-      class="fixed top-0 left-0 min-w-full min-h-full blur z-10"
+      class="fixed top-0 left-0 min-w-max w-full lg:min-w-full min-h-full blur z-10"
       src="/img/backgrounds/white-clouds.jpg"
       alt="Blured Background Image" />
 

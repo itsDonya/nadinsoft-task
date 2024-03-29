@@ -2,11 +2,11 @@
   <section
     class="w-full h-full py-12 flex flex-col items-center justify-center gap-12">
     <!-- welcome text -->
-    <h2 class="text-2xl text-neutral-200 font-mono">
+    <h2 class="text-lg lg:text-2xl text-neutral-200 font-mono">
       Welcome, Donya Davoodi :)
     </h2>
 
-    <!-- found components for this section in @/components/clock -->
+    <!-- you can find clock-related components here: @/components/clock -->
     <the-clock></the-clock>
 
     <!-- message -->
