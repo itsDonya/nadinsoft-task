@@ -2,7 +2,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 // views
-import DashboardView from "./views/DashboardView.vue";
+import DashboardView from "./src/views/DashboardView.vue";
 
 // Define Route Record Raw Array
 const routes: RouteRecordRaw[] = [

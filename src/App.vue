@@ -19,7 +19,9 @@
         <div class="quarter"></div>
 
         <!-- dynamic content goes here -->
-        <div class="h-full overflow-y-auto"></div>
+        <article class="w-full h-full overflow-y-auto">
+          <router-view></router-view>
+        </article>
       </div>
     </a-flex>
   </div>
@@ -29,6 +31,7 @@
 import { ref } from "vue";
 import AppBar from "./components/layout/AppBar.vue";
 import AppSidebar from "./components/layout/AppSiderbar.vue";
+import AppClock from "./components/layout/AppClock.vue";
 
 // variables
 const sidebarIsOpen = ref(false);

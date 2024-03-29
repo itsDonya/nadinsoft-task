@@ -5,4 +5,5 @@ export default {
     extend: {},
   },
   plugins: [],
+  safelist: [...[...Array(360).keys()].flatMap((i) => `rotate-[${i}deg]`)], // all rotate degrees
 };
