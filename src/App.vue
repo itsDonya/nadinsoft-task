@@ -1,47 +1,56 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div
+    class="app-wrapper relative w-screen h-screen flex flex-col items-start justify-start gap-0 bg-black overflow-hidden">
+    <img
+      class="fixed top-0 left-0 min-w-max w-full lg:min-w-full min-h-full blur z-10"
+      src="/img/backgrounds/white-clouds.jpg"
+      alt="Blured Background Image" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+    <!-- app bar -->
+    <app-bar @toggle-sidebar="toggleSidebar"></app-bar>
 
-  <main>
-    <TheWelcome />
-  </main>
+    <a-flex align="center" justify="start" class="w-full h-full z-20">
+      <app-sidebar
+        @close="sidebarIsOpen = false"
+        :is-open="sidebarIsOpen"></app-sidebar>
+
+      <div class="relative w-full h-full shadow-xl overflow-hidden">
+        <!-- a quarter square, for section's top-left radius -->
+        <div class="quarter"></div>
+
+        <!-- dynamic content goes here -->
+        <article class="w-full h-full overflow-y-auto">
+          <router-view></router-view>
+        </article>
+      </div>
+    </a-flex>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script setup lang="ts">
+import { ref } from "vue";
+import AppBar from "./components/layout/AppBar.vue";
+import AppSidebar from "./components/layout/AppSiderbar.vue";
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+// variables
+const sidebarIsOpen = ref(false);
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+// methods
+const toggleSidebar = (): void => {
+  sidebarIsOpen.value = !sidebarIsOpen.value;
+};
+</script>
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+<style>
+.quarter {
+  box-sizing: content-box;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: -1rem;
+  left: -1rem;
+  border-width: 1rem 0 0 1rem;
+  border-color: rgb(255 255 255 / 0.1);
+  border-radius: 100% 0 0 0;
 }
 </style>
