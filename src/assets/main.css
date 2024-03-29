@@ -7,3 +7,25 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+/* ant-design customization */
+.ant-menu-item-selected {
+  background-color: #ffffff50 !important;
+}
+.ant-menu-item-selected * {
+  color: #eeeeee !important;
+}
+:where(.css-dev-only-do-not-override-1hsjdkk).ant-menu-light:not(
+    .ant-menu-horizontal
+  )
+  .ant-menu-item:not(.ant-menu-item-selected):hover {
+  color: #eeeeee !important;
+  background-color: #eeeeee40 !important;
+}
+
+@layer base {
+  /* ant-design customization */
+  .icon {
+    line-height: 0 !important;
+  }
+}
