@@ -1,6 +1,6 @@
 <template>
   <div
-    class="relative w-56 h-56 bg-zinc-300/20 flex flex-col items-center justify-center rounded-full shadow-2xl">
+    class="relative w-56 min-w-56 max-w-56 h-56 min-h-56 max-h-56 bg-zinc-300/20 flex flex-col items-center justify-center rounded-full shadow-2xl">
     <!-- clock indicators -->
     <clock-indicators></clock-indicators>
 
