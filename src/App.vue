@@ -31,7 +31,6 @@
 import { ref } from "vue";
 import AppBar from "./components/layout/AppBar.vue";
 import AppSidebar from "./components/layout/AppSiderbar.vue";
-import AppClock from "./components/layout/AppClock.vue";
 
 // variables
 const sidebarIsOpen = ref(false);
