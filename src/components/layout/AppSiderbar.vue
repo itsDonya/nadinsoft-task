@@ -1,11 +1,11 @@
 <template>
   <aside
-    class="isolate w-[264px] h-full pt-4 bg-white/10 shadow-lg overflow-hidden">
+    :class="[props.isOpen ? 'w-[200px]' : 'w-0 lg:w-[204px]']"
+    class="isolate h-full pt-4 bg-white/10 shadow-lg overflow-hidden transition-all duration-300">
     <a-menu
-      class="app-sidebar-menu bg-white/0 text-neutral-200"
+      class="lg:w-full text-xs lg:text-sm text-neutral-200 bg-white/0"
       v-model:openKeys="openKeys"
       v-model:selectedKeys="selectedKeys"
-      style="width: 226px"
       mode="vertical"
       :items="items"
       @click="handleClick" />
@@ -18,19 +18,23 @@ import { useRouter } from "vue-router";
 import { HomeOutlined } from "@ant-design/icons-vue";
 import type { MenuProps } from "ant-design-vue";
 
+// emits
+const emit = defineEmits(["close"]);
+
+// props
+const props = defineProps({
+  isOpen: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+});
+
 // variables
 const router = useRouter();
 const openKeys = ref<string[]>([]);
 const selectedKeys = ref<string[]>([]);
-const items = ref<
-  {
-    key: string;
-    icon: () => ReturnType<typeof h>;
-    label: string;
-    title: string;
-    path: string;
-  }[]
->([
+const items = ref([
   {
     key: "1",
     icon: () => h(HomeOutlined),
@@ -39,8 +43,14 @@ const items = ref<
     path: "/",
   },
 ]);
+
+// methods
 const handleClick: MenuProps["onClick"] = (menuInfo) => {
+  // redirect to the path
   const path = menuInfo.item.path;
   router.push(path);
+
+  // close the sidebar
+  emit("close");
 };
 </script>

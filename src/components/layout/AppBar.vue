@@ -4,7 +4,15 @@
     align="center"
     justify="space-between">
     <a-flex align="center" justify="start" gap="8">
+      <!-- hamburger menu -->
+      <menu-outlined
+        @click="toggleSidebar"
+        class="lg:hidden icon text-neutral-400 text-lg mr-4 cursor-pointer"></menu-outlined>
+
+      <!-- logo -->
       <img class="w-7" src="/logo-plain.png" alt="NadinSoft Logo" />
+
+      <!-- title -->
       <h1 class="italic text-lg text-neutral-300">
         <strong>NadinTask</strong>
       </h1>
@@ -18,7 +26,7 @@
           :arrow="{ pointAtCenter: true }"
           class="!bg-inherit">
           <a-button
-            class="text-neutral-200 flex items-center justify-center gap-1">
+            class="text-xs lg:text-sm text-neutral-200 flex items-center justify-center gap-1">
             <user-outlined class="icon"></user-outlined>
             <span>Donya Davoodi</span>
           </a-button>
@@ -44,5 +52,17 @@
 </template>
 
 <script setup lang="ts">
-import { UserOutlined, SettingOutlined } from "@ant-design/icons-vue";
+import {
+  MenuOutlined,
+  UserOutlined,
+  SettingOutlined,
+} from "@ant-design/icons-vue";
+
+// emits
+const emit = defineEmits(["toggle-sidebar"]);
+
+// methods
+const toggleSidebar = (): void => {
+  emit("toggle-sidebar");
+};
 </script>
