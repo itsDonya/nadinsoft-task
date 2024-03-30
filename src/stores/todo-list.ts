@@ -1,4 +1,4 @@
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { defineStore } from "pinia";
 import { message } from "ant-design-vue";
 
@@ -50,5 +50,14 @@ export const useTodoList = defineStore("todo-list", () => {
   watch(tasks.value, (newVal) => {
     localStorage.setItem("NadinTask_Tasks", JSON.stringify(newVal));
   });
+
+  // set stored tasks if they're existed in localStorage
+  onMounted(() => {
+    const storedTasks = JSON.parse(
+      localStorage.getItem("NadinTask_Tasks") as string
+    );
+    tasks.value = storedTasks;
+  });
+
   return { tasks, addTask, emptyTask, checkTask, deleteTask };
 });
