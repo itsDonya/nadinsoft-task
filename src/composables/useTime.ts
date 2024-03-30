@@ -30,10 +30,10 @@ export const useTime = (): TimeInfo => {
     "The darkest hour of the night, where shadows lurk and dreams take flight in the depths of slumber.",
   ]);
 
-  //   current hour of day
+  // current hour of day
   const currentHour: number = new Date().getHours();
 
-  //   current message, based on current hour
+  // current message, based on current hour
   const currentMessage: string = hourMessages.value[currentHour] || "";
 
   return { currentHour, currentMessage };
