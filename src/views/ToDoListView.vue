@@ -8,16 +8,16 @@
 
     <!-- list -->
     <div
-      class="w-[90vw] lg:w-[600px] flex flex-col items-center justify-start gap-8">
+      class="w-[90vw] lg:w-[600px] flex flex-col items-center justify-start gap-6">
       <!-- input -->
       <a-input-group compact class="!w-full group peer">
         <a-input
           v-model:value="taskTitle"
-          class="h-10 focus:opacity-100 bg-white/40 !w-0 group-hover:!w-[calc(100%-96px)] focus:!w-[calc(100%-96px)] !p-0 hover:!px-2 focus:!px-2 focus:!p-4 opacity-0 group-hover:opacity-100 duration-500 peer" />
+          class="h-10 bg-white/40 !w-[calc(100%-96px)] lg:!w-0 group-hover:!w-[calc(100%-96px)] focus:!w-[calc(100%-96px)] lg:!p-0 hover:!px-2 focus:!px-2 focus:!p-4 lg:opacity-0 group-hover:opacity-100 focus:opacity-100 duration-500 peer" />
         <a-button
           @click="submitHandler"
           type="primary"
-          class="w-24 h-10 text-neutral-700 bg-neutral-300 !rounded-md group-hover:!rounded-l-none peer-focus-within:!rounded-l-none"
+          class="w-24 h-10 text-neutral-700 bg-neutral-300 lg:!rounded-md group-hover:!rounded-l-none peer-focus-within:!rounded-l-none"
           >Add</a-button
         >
       </a-input-group>
