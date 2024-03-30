@@ -9,6 +9,14 @@ body {
   scroll-behavior: smooth;
 }
 
+/* scrollbar */
+::-webkit-scrollbar {
+  @apply w-1 h-1;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-400/60 rounded-full;
+}
+
 /* ant-design customization */
 .ant-menu-item-selected {
   background-color: #ffffff50 !important;
