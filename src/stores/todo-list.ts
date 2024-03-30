@@ -22,6 +22,7 @@ export const useTodoList = defineStore("todo-list", () => {
       isDone: false,
     };
     tasks.value.unshift(task);
+    saveTasks();
     message.success("Task added");
   };
 
@@ -36,6 +37,8 @@ export const useTodoList = defineStore("todo-list", () => {
       (task) => task.title == taskTitle
     );
     tasks.value[identifiedTaskIdx].isDone = true;
+    saveTasks();
+    message.success("Task checked as done");
   };
 
   // delete a task
@@ -44,12 +47,14 @@ export const useTodoList = defineStore("todo-list", () => {
       (task) => task.title == taskTitle
     );
     tasks.value.splice(identifiedTaskIdx, 1);
+    saveTasks();
+    message.success("Task removed");
   };
 
-  // save any change into localStorage
-  watch(tasks.value, (newVal) => {
-    localStorage.setItem("NadinTask_Tasks", JSON.stringify(newVal));
-  });
+  // save tasks into localStorage
+  const saveTasks = (): void => {
+    localStorage.setItem("NadinTask_Tasks", JSON.stringify(tasks.value));
+  };
 
   // set stored tasks if they're existed in localStorage
   onMounted(() => {

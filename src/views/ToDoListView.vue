@@ -7,7 +7,8 @@
     </h1>
 
     <!-- list -->
-    <div class="w-[600px] flex flex-col items-center justify-start gap-8">
+    <div
+      class="w-[90vw] lg:w-[600px] flex flex-col items-center justify-start gap-8">
       <!-- input -->
       <a-input-group compact class="!w-full group peer">
         <a-input
