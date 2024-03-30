@@ -9,19 +9,26 @@ export const useTodoList = defineStore("todo-list", () => {
   const tasks = ref([] as TaskInfo[]);
 
   // add task
-  const addTask = (taskName: string): void => {
+  const addTask = (taskTitle: string): void => {
     const task: TaskInfo = {
-      name: taskName as string,
+      title: taskTitle as string,
       isDone: false,
     };
     tasks.value.unshift(task);
     message.success("Task added");
   };
 
-  // empty task name message
+  // empty task title message
   const emptyTask = (): void => {
-    message.error("Please enter a name for your new task");
+    message.error("Please enter a title for your new task");
   };
 
-  return { tasks, addTask, emptyTask };
+  // check task
+  const checkTask = (taskTitle: string): void => {
+    const identifiedTask = tasks.value.findIndex(
+      (task) => task.title == taskTitle
+    );
+    tasks.value[identifiedTask].isDone = true;
+  };
+  return { tasks, addTask, emptyTask, checkTask };
 });

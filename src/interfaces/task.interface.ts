@@ -1,4 +1,4 @@
 export interface TaskInfo {
-  name: string;
+  title: string;
   isDone: boolean;
 }

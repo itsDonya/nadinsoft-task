@@ -11,7 +11,7 @@
       <!-- input -->
       <a-input-group compact class="!w-full group peer">
         <a-input
-          v-model:value="taskName"
+          v-model:value="taskTitle"
           class="h-10 focus:opacity-100 bg-white/40 !w-0 group-hover:!w-[calc(100%-96px)] focus:!w-[calc(100%-96px)] !p-0 hover:!px-2 focus:!px-2 focus:!p-4 opacity-0 group-hover:opacity-100 duration-500 peer" />
         <a-button
           @click="submitHandler"
@@ -26,15 +26,17 @@
         <li
           :key="i"
           v-for="(task, i) in tasks"
-          class="w-full p-4 bg-neutral-300/30 flex items-center justify-between gap-4 rounded-lg">
+          :class="[task.isDone ? 'bg-neutral-300/30' : 'bg-neutral-300/60']"
+          class="w-full p-4 flex items-center justify-between gap-4 rounded-lg">
           <!-- title -->
-          <p :class="[task.isDone ? 'line-through' : '']">{{ task.name }}</p>
+          <p :class="[task.isDone ? 'line-through' : '']">{{ task.title }}</p>
 
           <!-- buttons -->
           <a-flex align="center" justify="center" gap="12">
             <check-outlined
               v-if="!task.isDone"
-              class="text-lg text-neutral-400" />
+              @click="checkTask(task.title)"
+              class="text-lg text-white" />
             <delete-outlined class="text-lg text-neutral-800" />
           </a-flex>
         </li>
@@ -55,24 +57,27 @@ import { CheckOutlined, DeleteOutlined } from "@ant-design/icons-vue";
 
 // variables
 const store = useTodoList();
-const taskName = ref<string>("");
+const taskTitle = ref<string>("");
 
 // computed
 const tasks = computed(() => store.tasks);
 
 // methods
 const addTask = (): void => {
-  store.addTask(taskName.value);
-  taskName.value = "";
+  store.addTask(taskTitle.value);
+  taskTitle.value = "";
 };
 const emptyTask = (): void => {
   store.emptyTask();
 };
 const submitHandler = (): void => {
-  if (taskName.value) {
+  if (taskTitle.value) {
     addTask();
   } else {
     emptyTask();
   }
+};
+const checkTask = (title): void => {
+  store.checkTask(title);
 };
 </script>
