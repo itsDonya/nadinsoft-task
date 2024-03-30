@@ -37,7 +37,9 @@
               v-if="!task.isDone"
               @click="checkTask(task.title)"
               class="text-lg text-white" />
-            <delete-outlined class="text-lg text-neutral-800" />
+            <delete-outlined
+              @click="deleteTask(task.title)"
+              class="text-lg text-neutral-800" />
           </a-flex>
         </li>
 
@@ -77,7 +79,10 @@ const submitHandler = (): void => {
     emptyTask();
   }
 };
-const checkTask = (title): void => {
+const checkTask = (title: string): void => {
   store.checkTask(title);
+};
+const deleteTask = (title: string): void => {
+  store.deleteTask(title);
 };
 </script>

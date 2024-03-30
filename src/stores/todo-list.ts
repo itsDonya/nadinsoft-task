@@ -8,7 +8,7 @@ import { TaskInfo } from "../interfaces/task.interface";
 export const useTodoList = defineStore("todo-list", () => {
   const tasks = ref([] as TaskInfo[]);
 
-  // add task
+  // add a new task
   const addTask = (taskTitle: string): void => {
     const task: TaskInfo = {
       title: taskTitle as string,
@@ -23,12 +23,20 @@ export const useTodoList = defineStore("todo-list", () => {
     message.error("Please enter a title for your new task");
   };
 
-  // check task
+  // check a task
   const checkTask = (taskTitle: string): void => {
-    const identifiedTask = tasks.value.findIndex(
+    const identifiedTaskIdx = tasks.value.findIndex(
       (task) => task.title == taskTitle
     );
-    tasks.value[identifiedTask].isDone = true;
+    tasks.value[identifiedTaskIdx].isDone = true;
   };
-  return { tasks, addTask, emptyTask, checkTask };
+
+  // delete a task
+  const deleteTask = (taskTitle: string): void => {
+    const identifiedTaskIdx = tasks.value.findIndex(
+      (task) => task.title == taskTitle
+    );
+    tasks.value.splice(identifiedTaskIdx, 1);
+  };
+  return { tasks, addTask, emptyTask, checkTask, deleteTask };
 });
