@@ -15,7 +15,11 @@
 <script setup lang="ts">
 import { h, ref } from "vue";
 import { useRouter } from "vue-router";
-import { HomeOutlined, CheckCircleOutlined } from "@ant-design/icons-vue";
+import {
+  HomeOutlined,
+  CloudOutlined,
+  CheckCircleOutlined,
+} from "@ant-design/icons-vue";
 import type { MenuProps } from "ant-design-vue";
 
 // emits
@@ -48,6 +52,13 @@ const items = ref([
     label: "ToDo List",
     title: "ToDo List",
     path: "/todo-list",
+  },
+  {
+    key: "3",
+    icon: () => h(CloudOutlined),
+    label: "Weather",
+    title: "Weather",
+    path: "/weather",
   },
 ]);
 
