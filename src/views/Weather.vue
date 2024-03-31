@@ -10,8 +10,9 @@
     <a-flex vertical align="start" justify="start" gap="10">
       <label class="text-base text-white">City:</label>
       <a-auto-complete
+        allow-clear
         class="w-[90vw] lg:w-[600px]"
-        v-model:value="selectedcity"
+        v-model:value="cityName"
         :options="options"
         placeholder="Enter city name:"
         :filter-option="filterOption" />
@@ -22,6 +23,38 @@
         >Search</a-button
       >
     </a-flex>
+
+    <!-- result -->
+    <div
+      v-if="weatherData"
+      class="w-96 p-6 bg-white/30 flex flex-col items-center justify-start gap-4 rounded-2xl">
+      <h3 class="text-2xl font-bold text-white">{{ selectedCity }}</h3>
+
+      <img
+        class="w-28 drop-shadow-xl"
+        :src="`/img/weather/${
+          weatherData.current_weather.is_day ? 'sun' : 'moon'
+        }.png`"
+        :alt="`${weatherData.current_weather.is_day ? 'sun' : 'moon'} image`" />
+
+      <p class="text-lg text-neutral-200">
+        {{ weatherData.current_weather.temperature }}
+        {{ weatherData.current_weather_units.temperature }}
+      </p>
+
+      <p class="text-xl text-neutral-100">
+        {{ weatherData.current_weather.windspeed }}
+        -
+        {{ weatherData.current_weather_units.windspeed }}
+        {{
+          weatherData.current_weather.windspeed < 15
+            ? "Calm"
+            : weatherData.current_weather.windspeed < 23
+            ? "Breezy"
+            : "Stormy"
+        }}
+      </p>
+    </div>
   </section>
 </template>
 
@@ -30,8 +63,21 @@ import { ref, computed } from "vue";
 import { useWeather } from "../stores/weather";
 import locations from "../data/iran-locations.json";
 
+// interfaces
+interface WeatherInfo {
+  current_weather: {
+    is_day: number;
+    windspeed: number;
+    temperature: number;
+  };
+  current_weather_units: {
+    windspeed: number;
+    temperature: number;
+  };
+}
+
 // variables
-const selectedcity = ref("");
+const cityName = ref("");
 const store = useWeather();
 
 // interfaces
@@ -52,13 +98,17 @@ const options = computed(() => {
 
   return options;
 });
+const selectedCity = computed(() => store.cityName);
+const weatherData = computed<WeatherInfo>(
+  () => store.weatherData as WeatherInfo
+);
 
 // methods
 const filterOption = (input: string, option: Option) => {
   return option.city.toUpperCase().indexOf(input.toUpperCase()) >= 0;
 };
 const fetchWeatherData = () => {
-  store.fetchWeatherData(selectedcity.value);
+  store.fetchWeatherData(cityName.value);
 };
 </script>
 
@@ -73,5 +123,9 @@ const fetchWeatherData = () => {
   padding: auto 12px !important;
   font-size: 16px !important;
   background-color: #f7f7f780 !important;
+}
+.ant-select-clear {
+  background-color: inherit !important;
+  transform: scale(1.5) translateY(-3px) !important;
 }
 </style>
