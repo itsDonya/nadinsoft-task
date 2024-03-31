@@ -1,6 +1,6 @@
 <template>
   <a-flex
-    class="isolate w-full h-14 min-h-14 pl-4 pr-8 bg-white/10 z-20"
+    class="isolate w-full h-14 min-h-14 pl-4 pr-4 bg-white/10 z-20"
     align="center"
     justify="space-between">
     <a-flex align="center" justify="start" gap="8">
@@ -44,8 +44,8 @@
         </a-dropdown>
       </a-space>
 
-      <setting-outlined
-        class="icon text-xl text-neutral-300 cursor-pointer"></setting-outlined>
+      <!-- <setting-outlined
+        class="icon text-xl text-neutral-300 cursor-pointer"></setting-outlined> -->
     </a-flex>
     <!-- </a-flex> -->
   </a-flex>

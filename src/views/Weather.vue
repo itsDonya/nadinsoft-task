@@ -32,7 +32,7 @@
     <!-- result -->
     <div
       v-if="!loading && weatherData"
-      class="w-96 p-6 bg-white/30 flex flex-col items-center justify-start gap-4 rounded-2xl">
+      class="w-[90vw] md:w-96 p-6 bg-white/30 flex flex-col items-center justify-start gap-4 rounded-2xl">
       <h3 class="text-2xl font-bold text-white">{{ selectedCity }}</h3>
 
       <img
