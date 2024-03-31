@@ -81,7 +81,7 @@
   </section>
 </template>
 <script setup lang="ts">
-import { ref, reactive, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useProfile } from "../stores/profile";
 import { CheckCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 
@@ -90,7 +90,7 @@ import { ProfileInfo } from "../interfaces/profile.interface";
 
 // variables
 const store = useProfile();
-const profileData = reactive<ProfileInfo>({
+const profileData = ref<ProfileInfo>({
   name: "",
   locale: "en",
   theme: "white-clouds",
@@ -117,11 +117,21 @@ const loading = computed<boolean>(() => store.loading);
 
 // methods
 const onSubmit = () => {
-  store.saveChanges(profileData);
+  store.saveChanges(profileData.value);
 };
 const onSubmitFailed = (errorInfo: Event) => {
   store.failureHandler(errorInfo);
 };
+
+// lifecycles
+onMounted(() => {
+  // check if profile data is stored in localStorage, set the data
+  const storedData = localStorage.getItem("NadinTask_Profile");
+  if (storedData) {
+    profileData.value = JSON.parse(storedData);
+  }
+  console.log(storedData);
+});
 </script>
 
 <style>

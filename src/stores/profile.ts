@@ -20,7 +20,7 @@ export const useProfile = defineStore("weather", () => {
     loading.value = true;
 
     // save into localStorage
-    localStorage.setItem("NadinSoft_Profile", JSON.stringify(data));
+    localStorage.setItem("NadinTask_Profile", JSON.stringify(data));
 
     // display success message
     message.success("Changes hav been saved successfully");
