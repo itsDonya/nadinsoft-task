@@ -3,10 +3,8 @@ import { defineStore } from "pinia";
 import { message } from "ant-design-vue";
 import locations from "../data/iran-locations.json";
 
-interface WeatherInfo {
-  current_weather: object;
-  current_weather_units: object;
-}
+// interfaces
+import { WeatherInfo } from "../interfaces/weather.interface";
 
 export const useWeather = defineStore("weather", () => {
   const cityName = ref("");
@@ -28,7 +26,6 @@ export const useWeather = defineStore("weather", () => {
     )
       .then((res) => res.json())
       .then((data) => (weatherData.value = data));
-    // .then((data) => console.log(data));
   };
 
   return { cityName, weatherData, fetchWeatherData };

@@ -64,17 +64,7 @@ import { useWeather } from "../stores/weather";
 import locations from "../data/iran-locations.json";
 
 // interfaces
-interface WeatherInfo {
-  current_weather: {
-    is_day: number;
-    windspeed: number;
-    temperature: number;
-  };
-  current_weather_units: {
-    windspeed: number;
-    temperature: number;
-  };
-}
+import { WeatherInfo } from "../interfaces/weather.interface";
 
 // variables
 const cityName = ref("");
