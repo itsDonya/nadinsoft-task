@@ -37,22 +37,19 @@
               </a-menu-item>
 
               <a-menu-item>
-                <button>Logout</button>
+                <button @click="logout">Logout</button>
               </a-menu-item>
             </a-menu>
           </template>
         </a-dropdown>
       </a-space>
-
-      <!-- <setting-outlined
-        class="icon text-xl text-neutral-300 cursor-pointer"></setting-outlined> -->
     </a-flex>
-    <!-- </a-flex> -->
   </a-flex>
 </template>
 
 <script setup lang="ts">
 import { computed } from "vue";
+import { message } from "ant-design-vue";
 import { MenuOutlined, UserOutlined } from "@ant-design/icons-vue";
 
 // emits
@@ -67,6 +64,17 @@ const userName = computed<string | null>(() => {
 });
 
 // methods
+const logout = () => {
+  // remove all user's data from localStorage
+  localStorage.removeItem("NadinTask_Profile");
+  localStorage.removeItem("NadinTask_Tasks");
+
+  // show message
+  message.success("You successfully logged out");
+
+  // reload the page
+  location.reload();
+};
 const toggleSidebar = (): void => {
   emit("toggle-sidebar");
 };
