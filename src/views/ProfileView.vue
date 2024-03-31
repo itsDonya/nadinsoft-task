@@ -73,15 +73,15 @@
       <a-button
         type="primary"
         html-type="submit"
-        class="h-auto px-6 py-2 text-base text-black bg-white transition-all">
-        Save changes
-        <!-- <loading-outlined></loading-outlined> -->
+        class="h-auto px-6 py-2 text-base text-black bg-white flex items-center justify-center gap-2 transition-all">
+        <span>Save changes</span>
+        <loading-outlined v-if="loading"></loading-outlined>
       </a-button>
     </a-form>
   </section>
 </template>
 <script setup lang="ts">
-import { ref, reactive } from "vue";
+import { ref, reactive, computed } from "vue";
 import { useProfile } from "../stores/profile";
 import { CheckCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 
@@ -111,6 +111,9 @@ const backgrounds = ref<string[]>([
   "fresh-leaves",
   "relaxing-cottage",
 ]);
+
+// computed
+const loading = computed<boolean>(() => store.loading);
 
 // methods
 const onSubmit = () => {

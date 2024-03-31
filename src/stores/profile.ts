@@ -10,13 +10,17 @@ export const useProfile = defineStore("weather", () => {
 
   // save changes into localStorage
   const saveChanges = (data: ProfileInfo): void => {
-    localStorage.setItem("NadinSoft_Profile", JSON.stringify(data));
-
     // validate name input
     if (!data.name) {
       message.error("Please enter a valid name!");
       return;
     }
+
+    // start loading
+    loading.value = true;
+
+    // save into localStorage
+    localStorage.setItem("NadinSoft_Profile", JSON.stringify(data));
 
     // display success message
     message.success("Changes hav been saved successfully");
