@@ -61,7 +61,7 @@ export const useTodoList = defineStore("todo-list", () => {
     const storedTasks = JSON.parse(
       localStorage.getItem("NadinTask_Tasks") as string
     );
-    tasks.value = storedTasks;
+    if (storedTasks) tasks.value = storedTasks;
   });
 
   return { tasks, addTask, emptyTask, checkTask, deleteTask };
