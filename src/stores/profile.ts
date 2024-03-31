@@ -22,6 +22,9 @@ export const useProfile = defineStore("weather", () => {
     // save into localStorage
     localStorage.setItem("NadinTask_Profile", JSON.stringify(data));
 
+    // reload the page, to apply background changes
+    location.reload();
+
     // display success message
     message.success("Changes hav been saved successfully");
 
