@@ -28,7 +28,7 @@
           <a-button
             class="text-xs lg:text-sm text-neutral-200 flex items-center justify-center gap-1">
             <user-outlined class="icon"></user-outlined>
-            <span>Donya Davoodi</span>
+            <span>{{ userName }}</span>
           </a-button>
           <template #overlay>
             <a-menu class="min-w-max">
@@ -52,14 +52,19 @@
 </template>
 
 <script setup lang="ts">
-import {
-  MenuOutlined,
-  UserOutlined,
-  SettingOutlined,
-} from "@ant-design/icons-vue";
+import { computed } from "vue";
+import { MenuOutlined, UserOutlined } from "@ant-design/icons-vue";
 
 // emits
 const emit = defineEmits(["toggle-sidebar"]);
+
+// computed
+const userName = computed<string | null>(() => {
+  const profileData = JSON.parse(
+    localStorage.getItem("NadinTask_Profile") as string
+  );
+  return profileData?.name || "";
+});
 
 // methods
 const toggleSidebar = (): void => {
