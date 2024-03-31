@@ -7,8 +7,8 @@
       :label-col="{ span: 8 }"
       :wrapper-col="{ span: 16 }"
       autocomplete="off"
-      @finish="onFinish"
-      @finishFailed="onFinishFailed">
+      @finish="onSubmit"
+      @finishFailed="onSubmitFailed">
       <a-flex align="center" justify="center" gap="24" class="w-full">
         <!-- name -->
         <a-space class="flex-1" direction="vertical">
@@ -35,15 +35,12 @@
         <label class="!text-base text-white">Theme Background</label>
 
         <!-- backgrounds -->
-        <!-- <div class="w-full grid grid-cols-2 md:grid-cols-4 gap-5"> -->
         <a-radio-group
           v-model:value="profileData.theme"
           class="w-full grid grid-cols-2 md:grid-cols-4 gap-5">
-          <!-- <a-radio-group v-model:value="profileData.theme"> -->
-          <!-- </a-radio-group> -->
           <a-radio
             :key="i"
-            v-for="(item, i) in backgrouds"
+            v-for="(item, i) in backgrounds"
             :value="item"
             :class="item == profileData.theme ? 'border-2 border-white' : ''"
             class="relative w-full h-44 md:h-20 flex items-center justify-center rounded-xl md:rounded-md shadow-xl hover:shadow-black/30 overflow-hidden transition-all duration-75 group">
@@ -59,8 +56,8 @@
             <div
               v-if="item == profileData.theme"
               class="absolute top-0 left-0 w-full h-full bg-neutral-900/60 flex items-center justify-center z-10">
-              <check-circle-filled
-                class="text-3xl md:text-xl text-neutral-300"></check-circle-filled>
+              <check-circle-outlined
+                class="text-3xl md:text-xl text-neutral-300"></check-circle-outlined>
             </div>
 
             <!-- image -->
@@ -70,26 +67,29 @@
               :alt="item.split('-').join(' ')" />
           </a-radio>
         </a-radio-group>
-        <!-- </div> -->
       </a-flex>
 
       <!-- save button -->
       <a-button
         type="primary"
-        class="h-auto px-6 py-2 text-base text-black bg-white"
-        >Save changes</a-button
-      >
+        html-type="submit"
+        class="h-auto px-6 py-2 text-base text-black bg-white transition-all">
+        Save changes
+        <!-- <loading-outlined></loading-outlined> -->
+      </a-button>
     </a-form>
   </section>
 </template>
 <script setup lang="ts">
 import { ref, reactive } from "vue";
-import { CheckCircleFilled } from "@ant-design/icons-vue";
+import { useProfile } from "../stores/profile";
+import { CheckCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 
 // interfaces
 import { ProfileInfo } from "../interfaces/profile.interface";
 
 // variables
+const store = useProfile();
 const profileData = reactive<ProfileInfo>({
   name: "",
   locale: "en",
@@ -105,7 +105,7 @@ const selectOptions = ref<object[]>([
     label: "fa",
   },
 ]);
-const backgrouds = ref<string[]>([
+const backgrounds = ref<string[]>([
   "white-clouds",
   "purple-moon",
   "fresh-leaves",
@@ -113,11 +113,11 @@ const backgrouds = ref<string[]>([
 ]);
 
 // methods
-const onFinish = (values: any) => {
-  console.log("Success:", values);
+const onSubmit = () => {
+  store.saveChanges(profileData);
 };
-const onFinishFailed = (errorInfo: any) => {
-  console.log("Failed:", errorInfo);
+const onSubmitFailed = (errorInfo: Event) => {
+  store.failureHandler(errorInfo);
 };
 </script>
 
