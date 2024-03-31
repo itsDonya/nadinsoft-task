@@ -18,6 +18,7 @@ import { useRouter } from "vue-router";
 import {
   HomeOutlined,
   CloudOutlined,
+  UserOutlined,
   CheckCircleOutlined,
 } from "@ant-design/icons-vue";
 import type { MenuProps } from "ant-design-vue";
@@ -59,6 +60,13 @@ const items = ref([
     label: "Weather",
     title: "Weather",
     path: "/weather",
+  },
+  {
+    key: "4",
+    icon: () => h(UserOutlined),
+    label: "Profile",
+    title: "Profile",
+    path: "/profile",
   },
 ]);
 
