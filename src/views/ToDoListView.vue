@@ -3,7 +3,7 @@
     class="w-full h-full p-8 flex flex-col items-center justify-start gap-16">
     <!-- title -->
     <h1 class="w-full text-start text-xl text-neutral-300">
-      <strong>ToDo List</strong>
+      <strong>{{ $t("todo_title") }}</strong>
     </h1>
 
     <!-- list -->
@@ -18,7 +18,7 @@
           @click="submitHandler"
           type="primary"
           class="w-24 h-10 text-neutral-700 bg-neutral-300 lg:!rounded-md group-hover:!rounded-l-none peer-focus-within:!rounded-l-none"
-          >Add</a-button
+          >{{ $t("todo_add") }}</a-button
         >
       </a-input-group>
 
@@ -46,7 +46,7 @@
 
         <!-- empty state -->
         <p v-if="!tasks.length" class="w-full text-start text-white">
-          You haven't added any task yet.
+          {{ $t("todo_empty_state") }}
         </p>
       </ul>
     </div>

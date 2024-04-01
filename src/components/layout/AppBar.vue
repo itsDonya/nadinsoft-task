@@ -14,7 +14,7 @@
 
       <!-- title -->
       <h1 class="italic text-lg text-neutral-300">
-        <strong>NadinTask</strong>
+        <strong>{{ $t("app_title") }}</strong>
       </h1>
     </a-flex>
 
