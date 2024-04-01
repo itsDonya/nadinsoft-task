@@ -3,7 +3,8 @@
     class="w-full md:h-full py-12 flex flex-col items-center justify-center gap-12">
     <!-- welcome text -->
     <h2 class="text-lg lg:text-2xl text-neutral-200 font-mono">
-      Welcome, {{ userName }} :)
+      <!-- Welcome, {{ userName }} :) -->
+      {{ $t("hello") }}, {{ userName }} :)
     </h2>
 
     <!-- you can find clock-related components here: @/components/clock -->
