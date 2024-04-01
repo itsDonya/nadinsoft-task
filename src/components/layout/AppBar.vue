@@ -33,11 +33,13 @@
           <template #overlay>
             <a-menu class="min-w-max">
               <a-menu-item>
-                <router-link to="/profile">Profile Settings</router-link>
+                <router-link to="/profile">{{
+                  $t("bar_settings")
+                }}</router-link>
               </a-menu-item>
 
               <a-menu-item>
-                <button @click="logout">Logout</button>
+                <button @click="logout">{{ $t("bar_logout") }}</button>
               </a-menu-item>
             </a-menu>
           </template>

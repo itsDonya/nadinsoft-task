@@ -16,7 +16,7 @@ export const useTodoList = defineStore("todo-list", () => {
     // check if there's a task with the same title
     const identifiedTask = tasks.value.find((task) => task.title == taskTitle);
     if (identifiedTask) {
-      message.error("You already have a task with the same title");
+      message.error(t("todo_message_duplicate"));
       return;
     }
 
@@ -26,12 +26,12 @@ export const useTodoList = defineStore("todo-list", () => {
     };
     tasks.value.unshift(task);
     saveTasks();
-    message.success(t("message_add_success"));
+    message.success(t("todo_message_add_success"));
   };
 
   // empty task title message
   const emptyTask = (): void => {
-    message.error(t("todo-message-add-failed"));
+    message.error(t("todo_message_add_failed"));
   };
 
   // check a task

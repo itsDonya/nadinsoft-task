@@ -41,6 +41,7 @@
   "todo_empty_state": "You haven't added any task yet.",
   "todo_message_add_success": "Task added",
   "todo_message_add_failed": "Please enter a title for your new task",
+  "todo_message_duplicate": "You already have a task with the same title",
   "todo_message_check_success": "Task checked as done",
   "todo_message_remove_success": "Task removed",
 
