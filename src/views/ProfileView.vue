@@ -89,8 +89,9 @@
   </section>
 </template>
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { useI18n } from "vue-i18n";
 import { useProfile } from "../stores/profile";
+import { ref, watch, computed, onMounted } from "vue";
 import { CheckCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 
 // interfaces
@@ -98,6 +99,7 @@ import { ProfileInfo } from "../interfaces/profile.interface";
 
 // variables
 const store = useProfile();
+const { locale } = useI18n();
 const profileData = ref<ProfileInfo>({
   name: "",
   locale: "en",
@@ -140,6 +142,14 @@ onMounted(() => {
   }
   console.log(storedData);
 });
+
+// watchers
+watch(
+  () => profileData.value.locale,
+  (value) => {
+    locale.value = value;
+  }
+);
 </script>
 
 <style>
