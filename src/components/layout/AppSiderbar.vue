@@ -15,6 +15,7 @@
 <script setup lang="ts">
 import { h, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
 import {
   HomeOutlined,
   CloudOutlined,
@@ -36,6 +37,7 @@ const props = defineProps({
 });
 
 // variables
+const { t } = useI18n();
 const router = useRouter();
 const openKeys = ref<string[]>([]);
 const selectedKeys = ref<string[]>([]);
@@ -43,29 +45,29 @@ const items = ref([
   {
     key: "1",
     icon: () => h(HomeOutlined),
-    label: "Dashboard",
-    title: "Dashboard",
+    label: t("dashboard_title"),
+    title: t("dashboard_title"),
     path: "/",
   },
   {
     key: "2",
     icon: () => h(CheckCircleOutlined),
-    label: "ToDo List",
-    title: "ToDo List",
+    label: t("todo_title"),
+    title: t("todo_title"),
     path: "/todo-list",
   },
   {
     key: "3",
     icon: () => h(CloudOutlined),
-    label: "Weather",
-    title: "Weather",
+    label: t("weather_title"),
+    title: t("weather_title"),
     path: "/weather",
   },
   {
     key: "4",
     icon: () => h(UserOutlined),
-    label: "Profile",
-    title: "Profile",
+    label: t("profile_title"),
+    title: t("profile_title"),
     path: "/profile",
   },
 ]);

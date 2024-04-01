@@ -3,24 +3,24 @@
     class="w-full h-full p-8 flex flex-col items-center justify-start gap-12">
     <!-- title -->
     <h1 class="w-full text-start text-xl text-neutral-300">
-      <strong>Weather</strong>
+      <strong>{{ $t("weather_title") }}</strong>
     </h1>
 
     <!-- auto-complete input -->
     <a-flex vertical align="start" justify="start" gap="10">
-      <label class="text-base text-white">City:</label>
+      <label class="text-base text-white">{{ $t("weather_city") }}:</label>
       <a-auto-complete
         allow-clear
         class="w-[90vw] lg:w-[600px]"
         v-model:value="cityName"
         :options="options"
-        placeholder="Enter city name:"
+        :placeholder="$t('weather_placeholder')"
         :filter-option="filterOption" />
       <a-button
         type="text"
         @click="fetchWeatherData"
         class="text-white bg-white/50 hover:!text-white hover:!bg-white/60 shadow-md hover:shadow-sm shadow-black/10"
-        >Search</a-button
+        >{{ $t("weather_search") }}</a-button
       >
     </a-flex>
 
@@ -49,14 +49,14 @@
 
       <p class="text-xl text-neutral-100">
         {{ weatherData.current_weather.windspeed }}
-        -
         {{ weatherData.current_weather_units.windspeed }}
+        -
         {{
           weatherData.current_weather.windspeed < 15
-            ? "Calm"
+            ? $t("calm")
             : weatherData.current_weather.windspeed < 23
-            ? "Breezy"
-            : "Stormy"
+            ? $t("breezy")
+            : $t("Stormy")
         }}
       </p>
     </div>

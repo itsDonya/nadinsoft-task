@@ -1,6 +1,12 @@
 <template>
   <section
     class="w-[90vw] md:w-[700px] md:h-full mx-auto py-12 flex flex-col items-center justify-center gap-12">
+    <!-- title -->
+    <h1 class="w-full text-start text-xl text-neutral-300">
+      <strong>{{ $t("profile_title") }}</strong>
+    </h1>
+
+    <!-- form -->
     <a-form
       class="w-full flex flex-col items-start justify-start gap-8"
       :model="profileData"
@@ -12,16 +18,18 @@
       <a-flex align="center" justify="center" gap="24" class="w-full">
         <!-- name -->
         <a-space class="flex-1" direction="vertical">
-          <label class="!text-base text-white">Name</label>
+          <label class="!text-base text-white">{{ $t("profile_name") }}</label>
           <a-input
             class="w-full"
             v-model:value="profileData.name"
-            placeholder="Enter your name" />
+            :placeholder="$t('profile_name_placeholder')" />
         </a-space>
 
         <!-- locale -->
         <a-space class="flex-1" direction="vertical">
-          <label class="!text-base text-white">Locale</label>
+          <label class="!text-base text-white">{{
+            $t("profile_locale")
+          }}</label>
           <a-select
             ref="select"
             class="w-full"
@@ -32,7 +40,7 @@
 
       <!-- theme -->
       <a-flex vertical align="start" justify="center" gap="10" class="w-full">
-        <label class="!text-base text-white">Theme Background</label>
+        <label class="!text-base text-white">{{ $t("profile_theme") }}</label>
 
         <!-- backgrounds -->
         <a-radio-group
@@ -47,9 +55,9 @@
             <!-- overlay (name) -->
             <div
               class="absolute top-0 left-0 w-full h-full bg-neutral-900/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 z-20">
-              <span class="capitalize text-sm text-white">{{
-                item.split("-").join(" ")
-              }}</span>
+              <span class="capitalize text-sm text-white">
+                {{ $t(item) }}
+              </span>
             </div>
 
             <!-- overlay (checked) -->
@@ -74,15 +82,16 @@
         type="primary"
         html-type="submit"
         class="h-auto px-6 py-2 text-base text-black bg-white flex items-center justify-center gap-2 transition-all">
-        <span>Save changes</span>
+        <span>{{ $t("profile_save") }}</span>
         <loading-outlined v-if="loading"></loading-outlined>
       </a-button>
     </a-form>
   </section>
 </template>
 <script setup lang="ts">
-import { ref, computed, onMounted } from "vue";
+import { useI18n } from "vue-i18n";
 import { useProfile } from "../stores/profile";
+import { ref, watch, computed, onMounted } from "vue";
 import { CheckCircleOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 
 // interfaces
@@ -90,6 +99,7 @@ import { ProfileInfo } from "../interfaces/profile.interface";
 
 // variables
 const store = useProfile();
+const { locale } = useI18n();
 const profileData = ref<ProfileInfo>({
   name: "",
   locale: "en",
@@ -132,6 +142,14 @@ onMounted(() => {
   }
   console.log(storedData);
 });
+
+// watchers
+watch(
+  () => profileData.value.locale,
+  (value) => {
+    locale.value = value;
+  }
+);
 </script>
 
 <style>

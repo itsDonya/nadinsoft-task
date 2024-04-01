@@ -1,11 +1,14 @@
-import { ref, watch, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import { defineStore } from "pinia";
 import { message } from "ant-design-vue";
+import { useI18n } from "vue-i18n";
 
 // interface
 import { TaskInfo } from "../interfaces/task.interface";
 
 export const useTodoList = defineStore("todo-list", () => {
+  const { t } = useI18n();
+
   const tasks = ref([] as TaskInfo[]);
 
   // add a new task
@@ -13,7 +16,7 @@ export const useTodoList = defineStore("todo-list", () => {
     // check if there's a task with the same title
     const identifiedTask = tasks.value.find((task) => task.title == taskTitle);
     if (identifiedTask) {
-      message.error("You already have a task with the same title");
+      message.error(t("todo_message_duplicate"));
       return;
     }
 
@@ -23,12 +26,12 @@ export const useTodoList = defineStore("todo-list", () => {
     };
     tasks.value.unshift(task);
     saveTasks();
-    message.success("Task added");
+    message.success(t("todo_message_add_success"));
   };
 
   // empty task title message
   const emptyTask = (): void => {
-    message.error("Please enter a title for your new task");
+    message.error(t("todo_message_add_failed"));
   };
 
   // check a task
@@ -38,7 +41,7 @@ export const useTodoList = defineStore("todo-list", () => {
     );
     tasks.value[identifiedTaskIdx].isDone = true;
     saveTasks();
-    message.success("Task checked as done");
+    message.success(t("todo_message_check_success"));
   };
 
   // delete a task
@@ -48,7 +51,7 @@ export const useTodoList = defineStore("todo-list", () => {
     );
     tasks.value.splice(identifiedTaskIdx, 1);
     saveTasks();
-    message.success("Task removed");
+    message.success(t("todo_message_remove_success"));
   };
 
   // save tasks into localStorage

@@ -36,7 +36,7 @@
         gap="18"
         class="w-96 p-6 bg-neutral-300 rounded-xl shadow-xl shadow-fuchsia-800">
         <!-- title -->
-        <p class="text-xl font-bold">Please enter your name</p>
+        <p class="text-xl font-bold">{{ $t("prompt_title") }}</p>
 
         <!-- input -->
         <a-input class="h-10" v-model:value="userName"></a-input>
@@ -46,7 +46,7 @@
           type="primary"
           class="w-full bg-fuchsia-800"
           :disabled="!userName"
-          >Submit</a-button
+          >{{ $t("prompt_submit") }}</a-button
         >
       </a-flex>
     </div>
